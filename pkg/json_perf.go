@@ -1,4 +1,4 @@
-package analyzer
+package pkg
 
 import (
 	"go/ast"
@@ -6,22 +6,26 @@ import (
 	"golang.org/x/tools/go/analysis"
 )
 
-var Analyzer = &analysis.Analyzer{
+var JsonPerf = &analysis.Analyzer{
 	Name: "stdlibjson",
 	Doc:  "Checks for encoding/json imports.",
 	Run:  run,
 }
 
+const shouldBe = "github.com/goccy/go-json"
+
 func run(pass *analysis.Pass) (interface{}, error) {
 	inspect := func(node ast.Node) bool {
 
-		funcDecl, ok := node.(*ast.ImportSpec)
+		//	is this an import spec
+		importSpec, ok := node.(*ast.ImportSpec)
 		if !ok {
 			return true
 		}
 
-		if funcDecl.Path.Value == `"encoding/json"` {
-			pass.Reportf(node.Pos(), "Import: %s\n", funcDecl.Path.Value)
+		//	if so, what is its value?
+		if importSpec.Path.Value == `"encoding/json"` {
+			pass.Reportf(node.Pos(), "Import: %s should be %q", importSpec.Path.Value, shouldBe)
 			return false
 		}
 		return true
