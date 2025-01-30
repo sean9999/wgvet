@@ -19,7 +19,7 @@ jobs:
   vet:
     runs-on: ubuntu-latest
     steps:
-      
+
       - name: Setup Go 1.23.x
         uses: actions/setup-go@v5
         with:
@@ -32,4 +32,4 @@ jobs:
         run: go build -o wgvet .
 
       - name: vet
-        run: wgvet ./...
+        run: ./wgvet ./...
