@@ -23,7 +23,7 @@ $ wgvet .
 $ git clone github.com/sean9999/wgvet
 ```
 
-Edit or add files in `./pkg/*.go`
+Edit or add exported symbols in `./pkg/*.go`
 
 Import those in `./main.go`
 
