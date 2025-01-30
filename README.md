@@ -14,7 +14,8 @@ $ go install github.com/sean9999/wgvet@latest
 
 ```sh
 $ cd /my/repo
-$ wgvet . 
+$ wgvet . # or
+$ wgvet ./...
 ```
 
 ### How to extend
