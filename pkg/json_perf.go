@@ -6,15 +6,19 @@ import (
 	"golang.org/x/tools/go/analysis"
 )
 
+/**
+ *	Check for usage of "encoding/json" and suggest using "github.com/goccy/go-json"
+ **/
+
 var JsonPerf = &analysis.Analyzer{
 	Name: "stdlibjson",
 	Doc:  "Checks for encoding/json imports.",
-	Run:  run,
+	Run:  check_json,
 }
 
-const shouldBe = "github.com/goccy/go-json"
+const jsonShouldBe = "github.com/goccy/go-json"
 
-func run(pass *analysis.Pass) (interface{}, error) {
+func check_json(pass *analysis.Pass) (interface{}, error) {
 	inspect := func(node ast.Node) bool {
 
 		//	is this an import spec
@@ -25,7 +29,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 
 		//	if so, what is its value?
 		if importSpec.Path.Value == `"encoding/json"` {
-			pass.Reportf(node.Pos(), "Import: %s should be %q", importSpec.Path.Value, shouldBe)
+			pass.Reportf(node.Pos(), "Import: %s should be %q", importSpec.Path.Value, jsonShouldBe)
 			return false
 		}
 		return true

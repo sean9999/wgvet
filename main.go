@@ -11,7 +11,7 @@ func main() {
 	checkers := otherCheckers()
 
 	//	use my checker(s)
-	checkers = append(checkers, pkg.JsonPerf, pkg.Cyclops)
+	checkers = append(checkers, pkg.JsonPerf, pkg.CyclopsAnalzyer(), pkg.AppErrs)
 
 	//	run them all
 	multichecker.Main(checkers...)
