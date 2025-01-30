@@ -1,4 +1,4 @@
-REPO=$$(git remote -v | head -n 1 | cut -f 2 | cut -d ' ' -f 1)
+REPO=$$(git remote -v | head -n 1 | cut -f 2 | cut -w -f 1 | cut -c 9-)
 SEMVER := $$(git tag --sort=-version:refname | head -n 1)
 BRANCH := $$(git branch --show-current)
 REF := $$(git describe --dirty --tags --always)

@@ -10,7 +10,7 @@ import (
  *	Check for usage of "encoding/json" and suggest using "github.com/goccy/go-json"
  **/
 
-// JsonPerf checks for instances where you're importing "json/encoding" and complains, suggesting you use [PreferredJson]
+// JsonPerf complains if you're not using [PreferredJson] as a drop-in replacement for [encoding/json]
 var JsonPerf = &analysis.Analyzer{
 	Name: "stdlibjson",
 	Doc:  "Checks for encoding/json imports.",

@@ -32,3 +32,4 @@ Import those in `./main.go`
 $ make install
 ```
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/sean9999/wgvet.svg)](https://pkg.go.dev/github.com/sean9999/wgvet)
