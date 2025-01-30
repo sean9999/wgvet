@@ -1,4 +1,4 @@
-REPO=github.com/sean9999/wgvet
+REPO=$$(git remote -v | head -n 1 | cut -f 2 | cut -d ' ' -f 1)
 SEMVER := $$(git tag --sort=-version:refname | head -n 1)
 BRANCH := $$(git branch --show-current)
 REF := $$(git describe --dirty --tags --always)
@@ -19,6 +19,12 @@ clean:
 
 tidy:
 	go mod tidy
+
+pkgsite:
+	if [ -z "$$(command -v pkgsite)" ]; then go install golang.org/x/pkgsite/cmd/pkgsite@latest; fi
+
+docs: pkgsite
+	pkgsite -open .
 
 publish:
 	GOPROXY=https://${GOPROXY},direct go list -m ${REPO}@${SEMVER}

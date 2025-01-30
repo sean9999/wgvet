@@ -10,13 +10,15 @@ import (
  *	Check for usage of "encoding/json" and suggest using "github.com/goccy/go-json"
  **/
 
+// JsonPerf checks for instances where you're importing "json/encoding" and complains, suggesting you use [PreferredJson]
 var JsonPerf = &analysis.Analyzer{
 	Name: "stdlibjson",
 	Doc:  "Checks for encoding/json imports.",
 	Run:  check_json,
 }
 
-const jsonShouldBe = "github.com/goccy/go-json"
+// PreferredJson is the [encoding/json] drop-in replacement package you need to prefer
+const PreferredJson = "github.com/goccy/go-json"
 
 func check_json(pass *analysis.Pass) (interface{}, error) {
 	inspect := func(node ast.Node) bool {
@@ -29,7 +31,7 @@ func check_json(pass *analysis.Pass) (interface{}, error) {
 
 		//	if so, what is its value?
 		if importSpec.Path.Value == `"encoding/json"` {
-			pass.Reportf(node.Pos(), "Import: %s should be %q", importSpec.Path.Value, jsonShouldBe)
+			pass.Reportf(node.Pos(), "Import: %s should be %q", importSpec.Path.Value, PreferredJson)
 			return false
 		}
 		return true

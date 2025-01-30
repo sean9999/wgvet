@@ -14,9 +14,12 @@ import (
  **/
 
 const skipTests = true
-const maxComplexity = 25
-const packageAverage = 15.0
 
+// CycloMaxComplexity is the maximum cyclomatic complexity allowed before we start complaining
+const CycloMaxComplexity = 25
+const packageAverage = CycloMaxComplexity / 2
+
+// CyclopsAnalzyer analyzes cyclomatic complexity and complains if it finds anything above [CycloMaxComplexity]
 func CyclopsAnalzyer() *analysis.Analyzer {
 	return &analysis.Analyzer{
 		Name: "cyclop",
@@ -52,8 +55,8 @@ func cyclo(pass *analysis.Pass) (interface{}, error) {
 			count++
 			comp := complexity(funcDecl)
 			sum += float64(comp)
-			if comp > maxComplexity {
-				pass.Reportf(node.Pos(), "calculated cyclomatic complexity for function %s is %d, max is %d", funcDecl.Name.Name, comp, maxComplexity)
+			if comp > CycloMaxComplexity {
+				pass.Reportf(node.Pos(), "calculated cyclomatic complexity for function %s is %d, max is %d", funcDecl.Name.Name, comp, CycloMaxComplexity)
 			}
 
 			return true

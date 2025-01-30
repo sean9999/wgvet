@@ -6,6 +6,7 @@ import (
 	"golang.org/x/tools/go/analysis"
 )
 
+// AppErrs complains if you use "errors" from stdlib, rather than "app_errors" from go-common.
 var AppErrs = &analysis.Analyzer{
 	Name: "app_errors",
 	Doc:  "Checks for usage of errors from stdlib.",
