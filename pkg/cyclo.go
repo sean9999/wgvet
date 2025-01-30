@@ -17,7 +17,7 @@ const skipTests = true
 
 // CycloMaxComplexity is the maximum cyclomatic complexity allowed before we start complaining
 const CycloMaxComplexity = 25
-const packageAverage = CycloMaxComplexity / 2
+const packageAverage float64 = CycloMaxComplexity / 2
 
 // CyclopsAnalzyer analyzes cyclomatic complexity and complains if it finds anything above [CycloMaxComplexity]
 func CyclopsAnalzyer() *analysis.Analyzer {
