@@ -20,7 +20,7 @@ $ wgvet ./...
 
 ## Github CI
 
-You can have this run on every push with `.github/`:
+You can have this run on every push with `.github/workflows/vet.yml`:
 
 ```yaml
 name: wgvet
