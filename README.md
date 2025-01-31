@@ -2,8 +2,6 @@
 
 Is a tool that does what `go vet` does, plus a few custom checks. It is useful for specific needs in a go dev shop. It's easy to extend.
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/sean9999/wgvet.svg)](https://pkg.go.dev/github.com/sean9999/wgvet)
-
 ## Getting Started
 
 ### Install
@@ -61,3 +59,5 @@ Import those in `./main.go`
 ```sh
 $ make install
 ```
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/sean9999/wgvet.svg)](https://pkg.go.dev/github.com/sean9999/wgvet)

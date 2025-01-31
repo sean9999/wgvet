@@ -6,8 +6,10 @@ import (
 	"fmt"
 )
 
+// this is a sentinal error that comes from the standard [errors] package
 var Sentinal = errors.New("ok")
 
+// this function uses [encoding/json] from the standard library
 func SomeJson() error {
 	j, err := json.Marshal(5)
 
