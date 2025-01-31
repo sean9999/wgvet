@@ -6,7 +6,7 @@ import (
 	"golang.org/x/tools/go/analysis"
 )
 
-// AppErrs complains if you use "errors" from stdlib, rather than "app_errors" from go-common.
+// AppErrs complains if you use "errors" from stdlib.
 var AppErrs = &analysis.Analyzer{
 	Name: "app_errors",
 	Doc:  "Checks for usage of errors from stdlib.",
@@ -21,7 +21,7 @@ var AppErrs = &analysis.Analyzer{
 
 			//	if so, what is its value?
 			if importSpec.Path.Value == `"errors"` {
-				pass.Reportf(node.Pos(), "Import: %s should be %q", importSpec.Path.Value, "app_errors")
+				pass.Reportf(node.Pos(), "Import: %s is wrong. Use and alternative.", importSpec.Path.Value)
 				return false
 			}
 			return true
