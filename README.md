@@ -18,6 +18,16 @@ $ wgvet . # or
 $ wgvet ./...
 ```
 
+## Git hook
+
+Prevent git commits from succeeding by placing this in `./.git/hooks/pre-commit`:
+
+```sh
+#!/bin/sh
+
+wgvet ./...
+```
+
 ## Github CI
 
 You can have this run on every push with `.github/workflows/vet.yml`:
